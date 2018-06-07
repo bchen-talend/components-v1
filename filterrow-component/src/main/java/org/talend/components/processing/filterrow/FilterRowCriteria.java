@@ -1,4 +1,4 @@
-package org.talend.components.processor;
+package org.talend.components.processing.filterrow;
 
 import lombok.Data;
 import org.talend.sdk.component.api.configuration.Option;

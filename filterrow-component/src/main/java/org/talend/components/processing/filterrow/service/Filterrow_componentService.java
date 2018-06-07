@@ -1,4 +1,4 @@
-package org.talend.components.service;
+package org.talend.components.processing.filterrow.service;
 
 import org.talend.sdk.component.api.service.Service;
 import org.talend.sdk.component.api.service.completion.DynamicValues;
@@ -6,9 +6,8 @@ import org.talend.sdk.component.api.service.completion.Values;
 
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
-import static org.talend.components.processor.ConditionsRowConstant.ALL_FUNCTIONS;
-import static org.talend.components.processor.ConditionsRowConstant.DEFAULT_OPERATORS;
+import static org.talend.components.processing.filterrow.ConditionsRowConstant.ALL_FUNCTIONS;
+import static org.talend.components.processing.filterrow.ConditionsRowConstant.DEFAULT_OPERATORS;
 
 @Service
 public class Filterrow_componentService {

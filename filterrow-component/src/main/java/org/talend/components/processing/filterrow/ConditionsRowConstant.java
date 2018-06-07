@@ -10,7 +10,7 @@
 // 9 rue Pages 92150 Suresnes, France
 //
 // ============================================================================
-package org.talend.components.processor;
+package org.talend.components.processing.filterrow;
 
 import java.util.Arrays;
 import java.util.List;

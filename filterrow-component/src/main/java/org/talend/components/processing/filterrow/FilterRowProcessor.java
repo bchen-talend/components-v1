@@ -1,4 +1,4 @@
-package org.talend.components.processor;
+package org.talend.components.processing.filterrow;
 
 import java.io.Serializable;
 
@@ -17,8 +17,6 @@ import org.talend.sdk.component.api.processor.Input;
 import org.talend.sdk.component.api.processor.Output;
 import org.talend.sdk.component.api.processor.OutputEmitter;
 import org.talend.sdk.component.api.processor.Processor;
-
-import org.talend.components.service.Filterrow_componentService;
 
 @Version(1) // default version is 1, if some configuration changes happen between 2 versions you can add a migrationHandler
 @Icon(Icon.IconType.STAR) // you can use a custom one using @Icon(value=CUSTOM, custom="filename") and adding icons/filename_icon32.png in resources

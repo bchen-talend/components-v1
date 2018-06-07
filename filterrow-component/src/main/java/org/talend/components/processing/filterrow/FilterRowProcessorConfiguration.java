@@ -1,4 +1,4 @@
-package org.talend.components.processor;
+package org.talend.components.processing.filterrow;
 
 import java.io.Serializable;
 import java.util.List;
