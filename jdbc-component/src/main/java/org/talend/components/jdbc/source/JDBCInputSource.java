@@ -15,11 +15,16 @@ import org.talend.daikon.avro.converter.IndexedRecordConverter;
 import org.talend.sdk.component.api.component.Icon;
 import org.talend.sdk.component.api.component.Version;
 import org.talend.sdk.component.api.configuration.Option;
+import org.talend.sdk.component.api.input.Assessor;
+import org.talend.sdk.component.api.input.Emitter;
 import org.talend.sdk.component.api.input.PartitionMapper;
+import org.talend.sdk.component.api.input.PartitionSize;
+import org.talend.sdk.component.api.input.Split;
 import org.talend.sdk.component.api.meta.Documentation;
 
 import javax.annotation.PostConstruct;
 import java.sql.ResultSet;
+import java.util.List;
 
 @Version(1)
 @Icon(Icon.IconType.STAR)
@@ -67,5 +72,19 @@ public class JDBCInputSource extends PTransform<PBegin, PCollection<IndexedRecor
                         return factory.convertToAvro(resultSet);
                     }
                 }).withCoder(getDefaultOutputCoder()));
+    }
+
+    @Assessor
+    public long estimateDataSetByteSize() {
+        return 0l;
+    }
+
+    @Split
+    public List<JDBCInputSource> split(@PartitionSize final long desiredSize) {
+        return null;
+    }
+    @Emitter
+    public Object create() {
+        return null;
     }
 }

@@ -11,6 +11,9 @@ import org.talend.sdk.component.api.meta.Documentation;
 
 import java.io.Serializable;
 
+import static org.talend.components.jdbc.JDBCDatasetConfiguration.SourceType.QUERY;
+import static org.talend.components.jdbc.JDBCDatasetConfiguration.SourceType.TABLE;
+
 @Version(1)
 @Data
 @DataSet("JDBCDataset")

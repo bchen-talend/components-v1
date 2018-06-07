@@ -26,7 +26,6 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class Jdbc_componentService {
 
-    // you can put logic here you can reuse in components
     @DynamicValues("dbTypesValuesProvider")
     public Values DbTypesValuesProvider() {
         return new Values(dbTypesInfo.keySet().stream().map(s -> new Values.Item(s, s)).collect(toList()));
