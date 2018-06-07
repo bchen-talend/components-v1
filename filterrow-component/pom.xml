@@ -11,8 +11,8 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>A Component Family</name>
-  <description>A generated component project</description>
+  <name>Processing Family</name>
+  <description>FilterRow</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,9 +36,39 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.wandoulabs.avro</groupId>
+      <artifactId>wandou-avpath_2.11</artifactId>
+      <version>0.1.3-talend</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.avro</groupId>
+      <artifactId>avro</artifactId>
+      <version>1.8.2</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.beam</groupId>
+      <artifactId>beam-sdks-java-core</artifactId>
+      <version>2.4.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.4</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>org.talend.sdk.component</groupId>
       <artifactId>component-api</artifactId>
       <version>1.0.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.16.22</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -79,16 +109,46 @@
     </dependency>
   </dependencies>
 
+    <repositories>
+        <repository>
+            <id>releases</id>
+            <url>https://artifacts-oss.talend.com/nexus/content/repositories/TalendOpenSourceRelease/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>talend_nexus</id>
+            <name>snapshots</name>
+            <url>https://artifacts-oss.talend.com/nexus/content/repositories/TalendOpenSourceSnapshot/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
   <build>
-    <extensions>
-      <extension>
+    <plugins>
+      <plugin>
         <groupId>org.talend.sdk.component</groupId>
         <artifactId>talend-component-maven-plugin</artifactId>
         <version>1.0.0</version>
-      </extension>
-    </extensions>
-
-    <plugins>
+        <executions>
+          <execution>
+            <id>dependencies</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>dependencies</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>

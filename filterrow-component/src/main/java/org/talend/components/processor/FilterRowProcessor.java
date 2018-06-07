@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import org.apache.avro.generic.IndexedRecord;
 import org.talend.sdk.component.api.component.Icon;
 import org.talend.sdk.component.api.component.Version;
 import org.talend.sdk.component.api.configuration.Option;
@@ -21,16 +22,16 @@ import org.talend.components.service.Filterrow_componentService;
 
 @Version(1) // default version is 1, if some configuration changes happen between 2 versions you can add a migrationHandler
 @Icon(Icon.IconType.STAR) // you can use a custom one using @Icon(value=CUSTOM, custom="filename") and adding icons/filename_icon32.png in resources
-@Processor(name = "FileterRow")
+@Processor(name = "FilterRow")
 @Documentation("TODO fill the documentation for this processor")
-public class FileterRowProcessor implements Serializable {
-    private final FileterRowProcessorConfiguration configuration;
-    private final Filterrow_componentService service;
+public class FilterRowProcessor implements Serializable {
+    private final FilterRowProcessorConfiguration configuration;
+    private final FilterRowPredicate predicate;
 
-    public FileterRowProcessor(@Option("configuration") final FileterRowProcessorConfiguration configuration,
-                          final Filterrow_componentService service) {
+    public FilterRowProcessor(@Option("configuration") final FilterRowProcessorConfiguration configuration,
+                          final FilterRowPredicate predicate) {
         this.configuration = configuration;
-        this.service = service;
+        this.predicate = predicate;
     }
 
     @PostConstruct
@@ -49,12 +50,18 @@ public class FileterRowProcessor implements Serializable {
 
     @ElementListener
     public void onNext(
-            @Input final FileterRowDefaultInput defaultInput,
-            @Output final OutputEmitter<FileterRowDefaultOutput> defaultOutput,
-            @Output("REJECT") final OutputEmitter<FileterRowREJECTOutput> REJECTOutput) {
+            @Input final IndexedRecord defaultInput,
+            @Output final OutputEmitter<IndexedRecord> defaultOutput,
+            @Output("REJECT") final OutputEmitter<IndexedRecord> REJECTOutput) {
         // this is the method allowing you to handle the input(s) and emit the output(s)
         // after some custom logic you put here, to send a value to next element you can use an
         // output parameter and call emit(value).
+        IndexedRecord record = defaultInput;
+        if (predicate.apply(defaultInput)) {
+            defaultOutput.emit(defaultInput);
+        } else {
+            REJECTOutput.emit(defaultInput);
+        }
     }
 
     @AfterGroup
