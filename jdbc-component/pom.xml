@@ -32,7 +32,7 @@
     TIP: it is recommended to set this property into your settings.xml in an active by default profile.
     -->
     <talend.component.studioHome />
-    <beam.version>2.4.0</beam.version>
+    <beam.version>2.3.0</beam.version>
   </properties>
 
   <dependencies>
