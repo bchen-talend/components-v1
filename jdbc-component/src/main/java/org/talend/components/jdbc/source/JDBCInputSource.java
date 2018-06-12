@@ -39,10 +39,6 @@ public class JDBCInputSource extends PTransform<PBegin, PCollection<IndexedRecor
 
     public JDBCInputSource(@Option("configuration") final JDBCDatasetConfiguration config) {
         this.config = config;
-    }
-
-    @PostConstruct
-    public void init() {
         Schema schema = Jdbc_componentService.getSchema(config);
         defaultOutputCoder = AvroCoder.of(schema);
     }

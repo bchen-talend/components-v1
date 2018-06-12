@@ -2,7 +2,7 @@
 // the components in the nested packages belong to
 @Components(family = "Processing", categories = "Processing")
 @Icon(value = Icon.IconType.CUSTOM, custom = "Processing")
-package org.talend.components;
+package org.talend.components.processing;
 
 import org.talend.sdk.component.api.component.Components;
 import org.talend.sdk.component.api.component.Icon;
