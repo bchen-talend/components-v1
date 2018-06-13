@@ -42,9 +42,14 @@
       <version>${beam.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.talend.daikon</groupId>
-      <artifactId>daikon</artifactId>
+      <groupId>org.talend.components</groupId>
+      <artifactId>components-adapter-beam</artifactId>
       <version>0.24.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.30</version>
     </dependency>
     <dependency>
       <groupId>org.talend.sdk.component</groupId>
@@ -139,4 +144,40 @@
       </plugin>
     </plugins>
   </build>
+
+  <repositories>
+    <repository>
+      <id>spring-releases</id>
+      <url>https://repo.spring.io/libs-release</url>
+    </repository>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>central</id>
+      <name>Central Repository</name>
+      <url>http://repo.maven.apache.org/maven2</url>
+    </repository>
+    <repository>
+      <id>releases</id>
+      <url>https://artifacts-oss.talend.com/nexus/content/repositories/TalendOpenSourceRelease/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>talend_nexus</id>
+      <name>snapshots</name>
+      <url>https://artifacts-oss.talend.com/nexus/content/repositories/TalendOpenSourceSnapshot/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 </project>

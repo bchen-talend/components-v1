@@ -26,10 +26,9 @@ public class FilterRowProcessor implements Serializable {
     private final FilterRowProcessorConfiguration configuration;
     private final FilterRowPredicate predicate;
 
-    public FilterRowProcessor(@Option("configuration") final FilterRowProcessorConfiguration configuration,
-                          final FilterRowPredicate predicate) {
+    public FilterRowProcessor(@Option("configuration") final FilterRowProcessorConfiguration configuration) {
         this.configuration = configuration;
-        this.predicate = predicate;
+        this.predicate = new FilterRowPredicate(configuration);
     }
 
     @PostConstruct
